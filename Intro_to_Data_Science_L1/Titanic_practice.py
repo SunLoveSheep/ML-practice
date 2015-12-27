@@ -28,14 +28,20 @@ def simple_heuristic(file_path, rule):
     You prediction should be 78% accurate or higher.
         
     Here's a simple heuristic to start off:
-       1) If the passenger is female, your heuristic should assume that the
-       passenger survived.
-       2) If the passenger is male, you heuristic should
-       assume that the passenger did not survive.
+        1) If the passenger is female, your heuristic should assume that the
+        passenger survived.
+        2) If the passenger is male, you heuristic should
+        assume that the passenger did not survive.
        
     Here's a more complex algorithm, predict the passenger survived if:
-    1) If the passenger is female or
-    2) if his/her socioeconomic status is high AND if the passenger is under 18
+        1) If the passenger is female or
+        2) If his/her socioeconomic status is high AND if the passenger is under 18
+    
+    Then let's try some customized heuristics:
+    Passengers would survive if:
+        1) If the passenger is female and in high socioeconomic status and has at most 5 (sum of) sibsp & Parch
+        2) If the passenger is female and in low/mid socioeconomic status
+        3) If his/her socioeconomic status is high AND if the passenger is under 18
     
     You can access the gender of a passenger via passenger['Sex'].
     If the passenger is male, passenger['Sex'] will return a string "male".
@@ -87,6 +93,18 @@ def simple_heuristic(file_path, rule):
             
         elif (rule == 'slight_complex'):
             if ((passenger['Sex'] == 'female') or ((passenger['Pclass']) == 1 and passenger['Age'] < 18)):
+                predictions[passenger_id] = 1;
+            else:
+                predictions[passenger_id] = 0;
+        elif (rule == 'custom'):
+            if (passenger['Sex']=='female' and passenger['Pclass']==3):
+                if (passenger['SibSp']+passenger['Parch']<=4):
+                    predictions[passenger_id] = 1;
+                else:
+                    predictions[passenger_id] = 0;
+            elif (passenger['Sex']=='female' and passenger['Pclass']!=3):
+                predictions[passenger_id] = 1;
+            elif (passenger['Pclass'] == 1 and passenger['Age'] < 18):
                 predictions[passenger_id] = 1;
             else:
                 predictions[passenger_id] = 0;
