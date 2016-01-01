@@ -10,7 +10,9 @@ def api_get_request(url):
     # Once you've done this, return the name of the number 1 top artist in
     # Spain. 
     
+    #Call the API to get data
     data = requests.get(url).text
+    #store data into a python dict
     data = json.loads(data);
     
     print data['topartists']['artist'][0]['name'];
