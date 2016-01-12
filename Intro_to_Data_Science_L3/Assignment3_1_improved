@@ -24,13 +24,28 @@ def entries_histogram(turnstile_weather):
     https://www.dropbox.com/s/meyki2wl9xfa7yk/turnstile_data_master_with_weather.csv
     '''
     
+    #creat a new figure
     plt.figure()
+    #read data from data frame
     list_notrain = turnstile_weather['ENTRIESn_hourly'][(turnstile_weather['rain']==0)]; # your code here to plot a historgram for hourly entries when it is raining
     list_rain = turnstile_weather['ENTRIESn_hourly'][(turnstile_weather['rain']==1)]; # your code here to plot a historgram for hourly entries when it is not raining
+    
+    #transform type from pandas Series to pure list
+    list_rain = list_rain.tolist()
+    list_notrain = list_notrain.tolist()
+    
+    #set the bins for the two subplots
     bins_notrain = np.linspace(0,6000,24)
-    bins_rain = np.linspace(0,6000,22)
-    type(list_notrain)
-    plt.hist(turnstile_weather['ENTRIESn_hourly'][turnstile_weather['rain']==0],bins_notrain)
-    #plt.hist(turnstile_weather['ENTRIESn_hourly'][turnstile_weather['rain']==1],bins_notrain)
+    bins_rain = np.linspace(0,6000,21)
+    
+    #add subplots to the figure one by one
+    plt.hist(list_notrain,bins_notrain)
+    plt.hist(list_rain,bins_rain)
+    
+    #set some display features like grid, title, labels, and legends
     plt.grid();
+    plt.title('Histogram of ENTRIESn_hourly');
+    plt.xlabel('ENTRIESn_hourly');
+    plt.ylabel('Frequency');
+    plt.legend(['No Rain','Rain'])
     return plt
