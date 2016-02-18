@@ -1,0 +1,34 @@
+# Construction of a matrix with 3 rows that contain the numbers 1 up to 9
+matrix(1:9, byrow=TRUE, nrow = 3)
+
+#combine three vectors to form a matrix:
+new_hope <- c(460.998, 314.4)
+empire_strikes <- c(290.475, 247.900)
+return_jedi <- c(309.306, 165.8)
+
+star_wars_matrix <- matrix(c(new_hope,empire_strikes,return_jedi),byrow=TRUE,nrow=3)
+
+#add names to columns and rows:
+colnames(star_wars_matrix) <- c("US", "non-US")
+rownames(star_wars_matrix) <- c("A New Hope", "The Empire Strikes Back", "Return of the Jedi")
+
+#sum each rows and creat a new vector to store results
+worldwide_vector <- rowSums(star_wars_matrix)
+
+#combine multiple matrix/vectors by column:
+all_wars_matrix <- cbind(star_wars_matrix, worldwide_vector)
+#by rows:
+all_wars_matrix <- rbind(star_wars_matrix,star_wars_matrix2)
+
+#some element selections:
+# Average second column
+non_us_all <- mean(star_wars_matrix[, 2])
+ 
+# Average the first two rows of the second column
+non_us_some <- mean(star_wars_matrix[1:2, 2])
+
+# multiplication and division of matrix elements:
+visitors <- star_wars_matrix/5
+
+# multiplication and division among matrix
+visitors <- star_wars_matrix/ticket_prices_matrix
