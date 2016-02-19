@@ -1,0 +1,6 @@
+#factor variable: can take discrete "values", similar to python vector
+#generate a factor variable:
+gender_vector <- ("Male", "Female", "Female", "Male", "Male")
+
+#convert a vector to a factor variable
+factor_gender_vector <- factor(gender_vector)
