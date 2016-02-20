@@ -4,3 +4,21 @@ gender_vector <- ("Male", "Female", "Female", "Male", "Male")
 
 #convert a vector to a factor variable
 factor_gender_vector <- factor(gender_vector)
+
+#change names of each level in a factor:
+survey_vector <- c("M", "F", "F", "M", "M")
+factor_survey_vector <- factor(survey_vector)
+#note that defaultly R will rank levels alphabetically, therefore in this factor, the first level will be "F" instead "M".
+#so we need to first assign "Female", then "Male"
+levels(factor_survey_vector) <- c("Female", "Male")
+
+#check a variable
+summary(factor_survey_vector)
+#output results:
+#Female   Male 
+#     2      3 
+
+#assign ordered levels to factor
+speed_vector <- c("Fast", "Slow", "Slow", "Fast", "Ultra-fast")
+factor_speed_vector <- factor(speed_vector, ordered=TRUE, levels = c("Slow","Fast","Ultra-fast"))
+#if print factor_speed_vector, the order of levels will be: Slow<Fast<Ultra-fast
