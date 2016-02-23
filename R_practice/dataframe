@@ -15,3 +15,28 @@ rotation <- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67);
 rings <- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE);
 # Create the data frame:
 planets_df  <- data.frame(planets, type, diameter, rotation, rings)
+
+#select data from a dataframe by variable name:
+furthest_planets_diameter <- planets_df[3:8,"diameter"]
+
+#an easier way to select a whole column/row, making use of the '$' sign. R will only look up for variables with name after '$'.
+rings_vector <- planets_df$rings
+
+#select certain columns/rows according to some criterion:
+planets_with_rings_df <- planets_df[rings_vector,] #select all planet_df data with rows that have ring=TRUE
+#a more elegant way, using the subset() function
+#subset(dataframe, subset = condition)
+small_planets_df  <- subset(planets_df, subset = diameter<1)
+
+#order things up:
+vector = c(1,2,3,4,13,12,10,8)
+order(vector) #will output 1,2,3,4,8,7,6,5, as the order of their largeness
+vector[order(vector)] #will output 1,2,3,5,8,10,12,13 ###Important, back into an ordered sequence. Since vector[] will output 
+#as the order given inside the [] where an sorted sequence if provided.
+
+#some sorting (ordering) and selecting job on planets_df:
+#first, sort the planets based on their diameters in a decreasing manner
+positions <- order(planets_df$diameter, decreasing = TRUE)
+#then select data from planets_df based on sorted "position" column and entire rows:
+largest_first_df <- planets_df[positions,]
+
