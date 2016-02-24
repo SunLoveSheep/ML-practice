@@ -1,0 +1,26 @@
+#Here are some codes for basic R list variables
+#list variable in R can contain multiple components of different type. Each component can be an integer, a vector, a matrix, a dataframe,
+#or even other lists
+
+#creating a list by the function list():
+# Vector with numerics from 1 up to 10
+my_vector <- 1:10 
+# Matrix with numerics from 1 up to 9
+my_matrix <- matrix(1:9, ncol = 3)
+# First 10 elements of the built-in data frame 'mtcars'
+my_df <- mtcars[1:10,]
+# Construct list with these different elements:
+my_list <- list(my_vector, my_matrix, my_df)
+
+#name your components in a list:
+names(my_list) <- c("vec", "mat", "df")
+
+#shining_list is a list contains of the "moviename": "Shining", "actors"(a vector of 5 actors' names), and "reviews" (a matrix contains
+#3 lines of reviews from different reviewers.
+# select the last actor
+last_actor <- shining_list[["actors"]][5]
+# select the second review, note that in matrix selecting, we always need to indicate both the column and row we are interested in.
+second_review <- shining_list[["reviews"]][2,]
+
+#add a component to the end of some list with itself named:
+shining_list_full <- c(shining_list, "year" = 1980)
