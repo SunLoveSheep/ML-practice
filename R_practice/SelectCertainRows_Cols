@@ -1,0 +1,12 @@
+dataFile = read.csv("filename.csv",header= TRUE); 
+#suppose u want col 1, col 9 and col 15 
+col1 = 1; 
+col9 = 9; 
+col15 = 15; 
+modifiedDataFile1 = dataFile[,c(col1, col9, col15)]; 
+
+#if u want rows from 1-100 and then 1000-5000 
+modifiedDataFile2 = dataFile[c(1:100, 1000:5000), ]; 
+
+#If u want to select rows and col simultaneously as specified above then 
+modifiedDataFile = dataFile[c(1:100, 1000:5000), c(col1, col9, col15)]; 
