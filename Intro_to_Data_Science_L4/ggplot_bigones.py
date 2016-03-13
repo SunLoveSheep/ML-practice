@@ -46,6 +46,8 @@ def plot_weather_data(turnstile_weather):
     #+scale_x_discrete(breaks=range(1,31),labels=turnstile_weather['DATEn'].unique())\
     #+theme(axis_text_x=element_text(angle=90,hjust=1, vjust=0.5, size=25)) +ylim(-100000,2500000)\
     
+    #plot, with histogram type, x,y labeled, scale_x_discrete to make x axis into pieces and labeled with .unique values 
+    #from all Date. Theme is used to adjust style of x labels
     grouped_unit = turnstile_weather.groupby('UNIT')['ENTRIESn_hourly'].sum()
     plot_unit = ggplot(turnstile_weather, aes(x=x_unit, y=turnstile_weather.groupby('UNIT')['ENTRIESn_hourly'].sum())) \
     +geom_histogram(stat='identity')+ geom_point() + xlab('Station') + ylab('Entries')\
