@@ -1,7 +1,7 @@
-/*
+'''
 In this .py, we read in the book Alice in Wonderland line by line and store all words without punctuation in lowercase into a dictionary
 as keys, the count of the appearance of each word is the value for the key.
-*/
+'''
 
 import logging
 import sys
