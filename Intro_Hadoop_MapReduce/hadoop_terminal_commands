@@ -1,0 +1,28 @@
+#1. local direction file list:
+ls
+#or a certain directory:
+ls udacity_training/data
+#local file on hadoop hdfs:
+hadoop -ls
+#local file on hadoop hdfs under some directory: (say directory named myinput)
+hadoop -ls myinput
+
+#2. put file to hadoop hdfs: (the file is named purchases.txt)
+hadoop fs -put udacity_training/data/purchases.txt
+
+#3. make a new directory on hadoop hdfs, rename, and remove the file put:
+#make a new directory with the name myinput:
+hadoop fs -mkdir myinput
+
+#put file to myinput:
+hadoop fs -put udacity_training/data/purchases.txt myinput
+
+#rename the file:
+hadoop -mv purchases.txt newname.txt
+
+#remove file:
+hadoop -rm newname.txt
+
+#4. run a mapper and reducer with existing mapper and reducer script: (here with mapper.py and reducer.py) without specify .jar:
+hs udacity_training/data/mapper.py udacity_training/data/reducer.py myinput joboutput
+#note, myinput is the directory with input file. joboutput should be a non-existing directory to be created by hadoop to put output file.
