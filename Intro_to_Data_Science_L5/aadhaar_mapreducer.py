@@ -66,7 +66,7 @@ def reducer():
         
         #if no new key encountered, update previous key to current key and the counter
         old_key = this_key
-        aadhaar_generated += float(count)
+        aadhaar_generated += float(count) #key note here. Var type from mapper is a string or characters, need to convert it to numerical number before each use.
     
     #print final key:
     if old_key != None:
