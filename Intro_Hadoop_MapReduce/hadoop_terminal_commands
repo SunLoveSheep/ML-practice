@@ -26,3 +26,9 @@ hadoop -rm newname.txt
 #4. run a mapper and reducer with existing mapper and reducer script: (here with mapper.py and reducer.py) without specify .jar:
 hs udacity_training/data/mapper.py udacity_training/data/reducer.py myinput joboutput
 #note, myinput is the directory with input file. joboutput should be a non-existing directory to be created by hadoop to put output file.
+
+#5. delete a directory on hadoop hdfs:
+hadoop fs -rmr directoryname
+
+#6. store file from hdfs to local directory: (this will store the file from hadoop to currently selected directory of local disk
+hadoop fs -get joboutput/part-00000(file name)
