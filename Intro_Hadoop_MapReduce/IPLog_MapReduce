@@ -1,0 +1,21 @@
+#this file is the udacity course assignment that run Map and Reduce on a Common Log Format
+#Common Log Format: 10.223.157.186 - - [15/Jul/2009:15:50:35 -0700] "GET /assets/js/lowpro.js HTTP/1.1" 200 10469
+#%h %l %u %t \"%r\" %>s %b
+#for more about python regular expression operations: https://docs.python.org/2/library/re.html
+
+import sys, re
+
+def mapper():
+
+  for line in sys.stdin:
+      #data = line.strip().split("\t")
+      #use re.search to get ip format:
+      ip = re.search('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', line)
+  	  #use re.search to find certain website:
+  	  filename = re.search('(\"(\S+) (.*?) (\S+)\")', line)
+      
+      #note: .group(0) means all found groups are included.
+      #group(3) means the 3rd found string is included.
+      #here, group(3) will return HTTP..., group(2) will return some long and strange long strings, group(1) will return some short command-like strings.
+      if ip and filename:
+          print "{0}\t{1}".format(ip.group(0), filename.group(3))
