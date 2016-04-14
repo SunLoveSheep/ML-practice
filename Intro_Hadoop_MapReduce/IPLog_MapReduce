@@ -17,5 +17,7 @@ def mapper():
       #note: .group(0) means all found groups are included.
       #group(3) means the 3rd found string is included.
       #here, group(3) will return HTTP..., group(2) will return some long and strange long strings, group(1) will return some short command-like strings.
+      #try direct match the target website maybe
+      #filename = re.match('target_website',line)
       if ip and filename:
           print "{0}\t{1}".format(ip.group(0), filename.group(3))
